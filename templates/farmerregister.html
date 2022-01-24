@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	<style>
+		.bg{
+			background: url("../static/images/grassbg.jpg");
+		}
+
+	</style>
+	<title>Krishi Mandala Web Portal</title>
+</head>
+
+<body class="bg">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+		<div class="container-fluid"> <a class="navbar-brand" href="#">ಕೃಷಿ ಮಂಡಲ</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"> <a class="nav-link " href="/">Home</a> </li>
+					<li class="nav-item"> <a class="nav-link" href="/Products">Shop</a> </li>
+					<li class="nav-item ">
+                        <a class="nav-link" href="/newsfeed">News Feed</a>
+                       </li>
+					<li class="nav-item"> <a class="nav-link" href="/login">Login</a> </li>
+					<li class="nav-item"> <a class="nav-link active" aria-current="page" href="/register">Register <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                          </svg></a>
+						<li class="nav-item"> <a class="nav-link" href="#">About Us</a> </li>
+						<li class="nav-item"> <a class="nav-link" href="#">Contact Us</a> </li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="container">
+		<form class="my-3" method="POST" action="/farmerregister">
+			  
+			<div class="row">
+				<div class="col-md-2"></div>
+				
+				<div class="col-md-8">
+					<div class="card">
+						<div class="card-body">
+							<div class="card text-center">
+								<div class="col-md-10"></div>
+								<div class="accordion" id="accordionExample">
+									<div class="accordion-item">
+									  <h2 class="accordion-header" id="headingOne">
+										<button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >PERSONAL DETAILS
+										</button>
+									  </h2>
+									  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+										<div class="accordion-body">
+											
+								<div class="card-body" >
+									<h5 class="card-title text-center">Register</h5>
+									<p class="card-text text-center">Please Enter your personal details.</p>
+									
+									<label for="farmersname" class="form-label"></label>
+									<div class="input-group mb-3"> <span class="input-group-text " id="basic-addon1">Name</span>
+										<input type="name" id="Name" class="form-control" name="Name" placeholder="Enter Your Full Name" aria-label="Username" aria-describedby="basic-addon1" required> </div>
+									<label for="age" class="form-label"></label>
+									<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Age</span>
+										<input type="age" id="age" class="form-control" placeholder="" name="Age" aria-label="Age" aria-describedby="basic-addon1" required> </div>
+									<label for="farmersname" class="form-label"></label>
+									<div class="input-group mb-1"> <span class="input-group-text" id="basic-addon1">Gender</span>
+										
+											<div class="radio">
+												<label>
+													<input type="radio" name="Gender" id="Radios1" value="Male"> Male </label>
+											</div>
+											<div class="radio">
+												<label>
+													<input type="radio" name="Gender" id="Radios2" value="Female"> Female</label>
+											</div>
+											<div class="radio">
+												<label>
+													<input type="radio" name="Gender" id="Radios3" value="Others"> Others </label>
+											</div>
+								</div>
+
+							<label for="age" class="form-label"></label>
+							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Phone Number</span>
+								<input type="text" id="Phone Number" name="PhoneNumber" class="form-control" placeholder="" aria-label="phonenum" aria-describedby="basic-addon1" required> </div>
+							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Aadhar Number</span>
+								<input type="text" id="Aadhar Number" name="AadharNumber" class="form-control" placeholder="" aria-label="aadharnum" aria-describedby="basic-addon1" required> </div>
+							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Address</span>
+								<input type="text-area" id="Address" name="Address" class="form-control" placeholder="" aria-label="Address" aria-describedby="basic-addon1" required> </div>
+							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">District</span>
+								<input type="text-area" id="District" name="District" class="form-control" placeholder="" aria-label="District" aria-describedby="basic-addon1" required> </div>
+							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">State</span>
+								<input type="text-area" id="State"  name="State" class="form-control" placeholder="" aria-label="State" aria-describedby="basic-addon1" required> </div>
+							
+						     <div class="col-md-3">
+							  <div class="form-check">
+								<input class="form-check-input" type="checkbox" name="FarmCategory" value="Small Scale Farming" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">Small Scale Farming </label>
+							  </div>
+							  <div class="form-check">
+								<input class="form-check-input" type="checkbox" name="FarmCategory" value="Marginal Farming" id="flexCheckChecked">
+								<label class="form-check-label" for="flexCheckChecked">Marginal Farming </label>
+							  </div>
+							  							  
+							  <div class="form-check">
+								<input class="form-check-input" type="checkbox" name="FarmCategory" value="Large Scale Farming" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">Large Scale Farming </label>
+							  </div>
+							  <div class="form-check">
+								<input class="form-check-input" type="checkbox" name="FarmCategory" value="House Farming" id="flexCheckChecked">
+								<label class="form-check-label" for="flexCheckChecked">House Farming </label>
+							  </div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>  
+			</div>
+				
+				           
+				<div class="row">
+                <div class="col-md-0"></div>
+
+                <div class="col-md-15">
+					
+
+                    <div class="card" >
+                        
+
+                        <div class="card-body">
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingTwo">
+								  <button class="accordion-button  " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						           ID CREATION
+								  </button>
+								</h2>
+								<div id="collapseTwo" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+								  <div class="accordion-body">
+									<h5 class="card-title text-center">Create Your Id</h5>
+							<label for="farmersname" class="form-label"></label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Farmer Id</span>
+                                <input type="text" id="Name" class="form-control" name="id" placeholder="Create Your Id"
+                                    aria-label="Name" aria-describedby="basic-addon1" required>
+                            </div>
+                            <label for="age" class="form-label"></label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Password</span>
+                                <input type="text" id="accno" class="form-control" placeholder="Create A Password"
+                                    aria-label="Account Number" aria-describedby="basic-addon1" required>
+                            </div>
+                           <label for="age" class="form-label"></label>
+                            <div class="input-group mb-2">
+                                    <span class="input-group-text" id="basic-addon1">Confirm Password</span>
+                                    <input type="text" id="bankname" class="form-control" placeholder="Re-enter Your Password"
+                                    aria-label="bankname" aria-describedby="basic-addon1" required>
+                            </div>
+                            </div>
+                         </div>
+                 </div>
+            </div>
+		</div>
+	</div>
+  </div>
+
+			<div class="row">
+                <div class="col-md-0"></div>
+			<div class="col-md-15">
+				<div class="card" >
+                        <div class="card-body">
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingThree">
+								  <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								  BANK DETAILS
+								  </button>
+								</h2>
+								<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+								  <div class="accordion-body">
+							<h5 class="card-title text-center">Register</h5>
+                            <p class="card-text text-center">Please Enter your bank details.</p><label for="farmersname" class="form-label"></label>
+                        <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Name As Per Bank Account</span>
+                                <input type="text" id="Name" class="form-control" name="nameb" placeholder=""
+                                    aria-label="Name" aria-describedby="basic-addon1" required>
+                        </div>
+                            <label for="accno" class="form-label"></label>
+                        <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Account Number</span>
+                                <input type="number" id="accno" class="form-control" name="accno" placeholder=""
+                                    aria-label="Account Number" aria-describedby="basic-addon1" required>
+                        </div>
+                          <label for="bankname" class="form-label"></label>
+                            <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">Bank Name</span>
+                                    <input type="text" id="bankname" class="form-control" name="bankName" placeholder=""
+                                        aria-label="bankname" aria-describedby="basic-addon1" required>
+                            </div>
+							<label for="ifsc" class="form-label"></label>
+                            <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">IFSC CODE</span>
+                                    <input type="text" id="ifsc" class="form-control" name="ifsccode" placeholder=""
+                                        aria-label="IFSCCODE" aria-describedby="basic-addon1" required>
+                            </div>
+                            <button class= "btn btn-success " type="submit">SUBMIT </button>
+                            <button class="btn btn-danger" type="reset">CLEAR</button>
+						</div>
+					</div>
+				  </div>
+				</div>
+            </div>
+		</div>
+	</div>
+  </form>
+</main>
+	<!-- Optional JavaScript; choose one of the two! -->
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
