@@ -1,0 +1,44 @@
+{% extends "/admin/base.html" %}
+{% block title %}Products{% endblock %}
+
+{% block content  %}
+<div class="container">
+    <!-- Added your content -->
+    <h5 class="text-center">PRODUCTS</h5>
+
+    <a href="/admin/products_create" class="btn btn-success my-2">Create a Product</a>
+
+
+    <table class="table table-striped-dark  table-bordered-dark my-3">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Category</th>
+              <th scope="col">Proceed And Add The Product</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+            <tr>
+                <th scope="row">{{ product.id }}</th>
+                <td>{{product.pname}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.category}}</td>
+                <td><a href="/admin/verify_edit/{{product.id}}" class="btn btn-info bg-gradient">PROCEED</a></td>
+                
+            </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+
+    
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    
+</script>
+{% endblock %}

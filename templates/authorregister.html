@@ -12,12 +12,12 @@
 </head>
 
 <body background="images/imgcarousel.jpg" background="images/imgedit.jpg">
-	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient">
 		<div class="container-fluid"> <a class="navbar-brand" href="#">ಕೃಷಿ ಮಂಡಲ</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"> <a class="nav-link " href="/index">Home</a> </li>
+					<li class="nav-item"> <a class="nav-link " href="/">Home</a> </li>
 					<li class="nav-item"> <a class="nav-link" href="/Products">Shop</a> </li>
 					<li class="nav-item ">
                         <a class="nav-link" href="/newsfeed">News Feed</a>
@@ -28,12 +28,16 @@
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg></a>
 						<li class="nav-item"> <a class="nav-link" href="#">About Us</a> </li>
-						<li class="nav-item"> <a class="nav-link" href="#">Contact Us</a> </li>
+						<li class="nav-item"> <a class="nav-link" href="/contactus">Contact Us</a> </li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<main class="container">
+		<a href="/register" class="btn btn-outline-dark my-2 bg-gradient"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+		  </svg> Back</a>
+		
 		<form class="my-3" method="POST" action="/authorregister">
 			<div class="row">
 				<div class="col-md-1"></div>
@@ -44,96 +48,62 @@
 							<p class="card-text text-center">Please Enter your details.</p>
 							<label for="name" class="form-label"></label>
 							<div class="input-group mb-1"> <span class="input-group-text" id="basic-addon1">Name</span>
-								<input type="text" id="name" class="form-control" name="Name" placeholder="" aria-label="Username" aria-describedby="basic-addon1" required> </div>
-							<label for="dob" class="form-label"></label>
-							<div class="input-group mb-1"> <span class="input-group-text" id="basic-addon1">Date of Birth</span>
-								<input type="date" id="dob" class="form-control" placeholder="" name="dob" aria-label="dob" aria-describedby="basic-addon1" required> </div>
+								<input type="text" id="name" class="form-control" placeholder="" name="Name" aria-label="Name" aria-describedby="basic-addon1" required> </div>
 							<label for="Gender" class="form-label"></label>
 							<div class="input-group mb-1"> <span class="input-group-text" id="basic-addon1">Gender</span>
 								<div class="container">
 									<div class="radio">
 										<label>
-											<input type="radio" name="gender" id="Radios1" value="Male"> Male </label>
+											<input type="radio" name="Gender" id="Radios1" value="Male"> Male </label>
 									</div>
 									<div class="radio">
 										<label>
-											<input type="radio" name="gender" id="Radios2" value="Female"> Female </label>
+											<input type="radio" name="Gender" id="Radios2" value="Female"> Female </label>
 									</div>
 									<div class="radio">
 										<label>
-											<input type="radio" name="gender" id="Radios3" value="Others"> Others </label>
+											<input type="radio" name="Gender" id="Radios3" value="Others"> Others </label>
 									
 								</div>
 							</div>
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Phone Number</span>
-								<input type="text" id="Phone Number" name="phno" class="form-control" placeholder="" aria-label="phonenum" aria-describedby="basic-addon1" required> </div>
-					</div>
+								<input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" placeholder="" aria-label="PhoneNumber" aria-describedby="basic-addon1" required></div>
                                 	 <div class="input-group mb-3 my-3"> <span class="input-group-text" id="basic-addon1">Address</span>
-								     <input type="text" id="Address" name="address" class="form-control" placeholder="" aria-label="Address" aria-describedby="basic-addon1" required> </div>
+								     <input type="text" id="Address" name="Address" class="form-control" placeholder="" aria-label="Address" aria-describedby="basic-addon1" required> </div>
 							        <div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">District</span>
-								    <input type="text" id="District" name="district" class="form-control" placeholder="" aria-label="District" aria-describedby="basic-addon1" required> </div>
+								    <input type="text" id="District" name="District" class="form-control" placeholder="" aria-label="District" aria-describedby="basic-addon1" required> </div>
 							        <div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">State</span>
-								    <input type="text" id="State"  name="state" class="form-control" placeholder="" aria-label="State" aria-describedby="basic-addon1" required> </div>
-
-							                 
-					          </div>
-
-						
-				         
-				    <div class="col-md-4"></div>
-			    </div>
-		</form>
-	</main>
-
-	<main class="container" >
-		<form class="my-3" method="POST" action="/:">
-
-
-		<form class="my-6">
-
+								    <input type="text" id="State"  name="State" class="form-control" placeholder="" aria-label="State" aria-describedby="basic-addon1" required> </div>
+									</div>
+						</div>
+					</div>
 			<div class="row">
 				<div class="col-md-2"></div>
-
-				<div class="col-md-4">
-
-					<div class="card" >
-						
-
-						<div class="card-body">
-							<h5 class="card-title text-center">Create Your Id</h5>
-
-							<label for="id" class="form-label"></label>
-							<div class="input-group mb-3">
-								<span class="input-group-text" id="basic-addon1">Blogger Id</span>
-								<input type="text" id="id"  name="id" class="form-control" placeholder="Create Your Id"
-									aria-label="Name" aria-describedby="basic-addon1" required>
-							</div>
+					<div class="col-md-7">
+						<div class="card" >
+							<div class="card-body">
+							 <h5 class="card-title text-center">Create Your UserName</h5>
+								<label for="id" class="form-label"></label>
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="basic-addon1">UserName</span>
+									<input type="text" id="bloggername"  name="username" class="form-control" placeholder="Create Your UserName"
+										aria-label="Name" aria-describedby="basic-addon1" required>
+								</div>
 							
 
 				
-							<div class="input-group mb-3">
-								<label for="password" class="form-label"></label>
-								<span class="input-group-text" id="basic-addon1">Password</span>
-								<input type="password" id="password" class="form-control" placeholder="Create A Password"
-									aria-label="Password" aria-describedby="basic-addon1" required>
+								<div class="input-group mb-5">
+									<label for="password" class="form-label"></label>
+									<span class="input-group-text" id="basic-addon1">Password</span>
+									<input type="password" id="password" name="password" class="form-control" placeholder="Create A Password"
+										aria-label="Password" aria-describedby="basic-addon1" required>
+								</div>
+						 		<button class="btn btn-success bg-gradient" type="submit">REGISTER</button>
+						 		<button class="btn btn-danger bg-gradient" type="reset">CLEAR</button>
 							</div>
-							
-
-						   
-				
-							<div class="input-group mb-2">
-								<label for="password" class="form-label"></label>
-									<span class="input-group-text" id="basic-addon1">Confirm Password</span>
-									<input type="password" id="password" class="form-control" placeholder="Re-enter Your Password"
-									aria-label="Password" aria-describedby="basic-addon1" required>
-							</div>
-							</div>
-						 </div>
-						 <button class="btn btn-success" type="submit">SUBMIT</button>
-						 <button class="btn btn-danger" type="reset">CLEAR</button>
-						</div>
-						<div class="col-md-4"></div>
 					</div>
+				</div>
+			</div>
 				</form>
 			</main>
 			

@@ -179,7 +179,7 @@ a.article:hover {
 </head>
 
 <body class="bg">
-    <nav class="navbar navbar-expand-lg bg-success bg-gradient">
+    <nav class="navbar navbar-expand bg-success">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="btn btn-success">
@@ -210,7 +210,7 @@ a.article:hover {
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 8 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                                   </svg> Hey,{{request.session.get('username')}}!
                                   </a></a>
                             </li>
@@ -238,7 +238,7 @@ a.article:hover {
                               <a class="nav-link" href="#">About Us</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="/contactus">Contact Us</a>
+                              <a class="nav-link" href="#">Contact Us</a>
                             </li>
                             </ul>
                     </div>
@@ -258,83 +258,43 @@ a.article:hover {
                             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Videos</a>
                             <ul class="collapse list-unstyled" id="homeSubmenu">
                                 <li>
-                                    <a href="#kannada">ಕನ್ನಡ</a>
+                                    <a href="/newsfeed">ಕನ್ನಡ</a>
                                 </li>
                                 <li>
-                                    <a href="#english">English</a>
+                                    <a href="#sing">English</a>
                                 </li>
                                 
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#blogs">Blogs</a>
-                            
                         </li>
                         <li>
                             <a href="#">Schemes</a>
                         </li>
                     
                           
-                     
+                        <li>
+                            <a href="#">Blogs</a>
+                            
+                        </li>
                         
                     </ul>
                 </nav>
         
-<section id="kannada">
-   
-    <div class="row">
-        <div class="col-md-8"></div>
-        <div class="card my-lg-0 bg">
-         <div class="col-md-8">
-          <div class="card-title">
-            <iframe width="1000" height="576" src="https://www.youtube.com/embed/iQ_ALf_YMws" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+    <div method="get" action="/blogs">
+        <div class="container">
           
-    
-    <div class="col-md-8">
-        <div class="card my-lg-0 bg">
-            <iframe width="1000" height="576" src="https://www.youtube.com/embed/OrjSFvr7cTU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-8">
-            <div class="card my-lg-0">
-            </div>
-    </div>
-</div>
-
-<section id="#english">
-    <div class="row">
-        <div class="col-md-8"></div>
-        <div class="card my-lg-0 bg">
-         <div class="col-md-8">
-          <div class="card-title">
-            <iframe width="1000" height="576" src="https://www.youtube.com/embed/iQ_ALf_YMws" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          
-    
-    <div class="col-md-8">
-        <div class="card my-lg-0 bg">
-            <iframe width="1000" height="576" src="https://www.youtube.com/embed/OrjSFvr7cTU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="col-md-8">
-            <div class="card my-lg-0 bg">
-            </div>
-    </div>
-</div>
-</section>
-
-<section id="blogs">   
-    <h2 class="text-center">Blogs</h2>
-        <div class="blogs container">
-          <div class="row">
+      
+            <div class="row">
             {% for blog in blogs %}
-                <div class="col-md-30 my-2">
-                    <div class="card bg-dark">
-                        <img src="{{ blog.image }}" height="550" />
+                <div class="col-md-4 my-2">
+                    <div class="card">
+                        <img src="{{ blog.image }}" height="250" />
         
                         <div class="mx-2">
                         
-                        <h3 class="text-center text-light"> {{ blog.title }}</h3>
-                        <p class="text-light"> {{ blog.content }}</p>
+                        <p> {{ blog.title }}</p>
+                        <p> {{ blog.content }}</p>
                     
                         </div>
                     
@@ -345,26 +305,7 @@ a.article:hover {
             {% endfor %}
             </div>
         </div>
-</section>
-
-<section id="schemes">   
-    <div class="schemes container">
-      <div class="row">
-            <div class="col-md-18 my-2">
-                <div class="card ">
-                    <a href="#" ></a>
-    
-                    <div class="mx-2">
-                    
-                    <h3 class="text-center"></h3>
-                    <p class="text-dark"></p>
-                   </div>
-                </div>
-            </div>
-       </div>
     </div>
-</section>
-
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

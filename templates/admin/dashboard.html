@@ -1,0 +1,176 @@
+{% extends "/admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content  %}
+<div class="container">
+    <!-- Added your content -->
+    <h5 class="text-center">Dashboard</h5>
+    <div class="row my-5">
+    <h4 class="text-center">Price Of Products</h4s>
+    <canvas id="bar_chart" width="800" height="250"></canvas>
+    <div class="row my-5 ">
+    <h4 class="text-center">Types Of Products</h4>
+    <div class="col-md-3"></div>
+    <canvas id="pie_chart" width="500" height="500"></canvas>
+    <div class="row my-5">
+    <h4 class="text-center">Types Of Registrations</h4>
+    <div class="col-md-3"></div>
+    <canvas id="doughnut_chart" width="500" height="500"></canvas>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    var chartFarmerTypes,chartFarmerCount;
+    var chartProductName,chartProductPrice,chartProductTypes,chartProductCounts;
+    const productNames = (data) =>  data.map(pname => pname.pname);
+    const productPrices = (data) =>  data.map(pname => pname.price);
+
+    const productTypes = (data) =>  data.map(pname => pname.category);
+    const productCounts = (data) =>  data.map(pname => pname.count);
+
+    const farmerTypes = (data) => data.map(type => type.type);
+    const farmerCounts = (data) => data.map(type => type.count); 
+
+
+    fetch("http://127.0.0.1:8000/products_data").then(res => res.json()).then(data => data)
+    .then(pnames =>{
+        chartProductName = productNames(pnames);
+        chartProductPrice = productPrices(pnames);
+        chartProductTypes = productTypes(pnames);
+        
+        var ctx = document.getElementById('bar_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+            
+            data: { 
+                labels: chartProductName,
+                
+               
+                datasets: [{
+                    label: 'Product Price History',
+                    data: chartProductPrice,
+                    
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });    
+    });
+    
+    fetch("http://127.0.0.1:8000/products_types").then(res => res.json()).then(data => data)
+    .then(pnames =>{
+        chartProductTypes = productTypes(pnames);
+        chartProductCounts = productCounts(pnames);
+        
+        var ctx = document.getElementById('pie_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'pie',
+            data: {
+                labels: chartProductTypes,
+                datasets: [{
+                   
+                    data: chartProductCounts,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });    
+    });
+
+    fetch("http://127.0.0.1:8000/farmer_types").then(res => res.json()).then(data => data)
+    .then(type =>{
+        chartFarmerTypes = farmerTypes(type);
+        chartFarmerCount = farmerCounts(type);
+        
+        var ctx = document.getElementById('doughnut_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'doughnut',
+            data: {
+                labels: chartFarmerTypes,
+                datasets: [{
+                   
+                    data: chartFarmerCount,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });    
+    });
+
+    
+</script>
+
+
+
+{% endblock %}

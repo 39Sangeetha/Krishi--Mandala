@@ -1,0 +1,78 @@
+{% extends "/admin/base.html" %}
+{% block title %}Products Create{% endblock %}
+
+{% block content  %}
+<div class="container">
+    <!-- Added your content -->
+    <h5 class="text-center">PRODUCTS CREATE</h5>
+
+    <form class="my-3" method="POST" action="/admin/products_create">
+
+        <div class="row">
+              <div class="col-md-3"></div>
+
+              <div class="col-md-6">
+
+                  <div class="card" >
+                    
+                      <div class="card-body">
+                          <h5 class="card-title text-center">Products</h5>
+                          <p class="card-text text-center">Edit the Products details.</p>
+                            {% for product in products %}
+                          <label for="pname" class="form-label">Edit Product Name :</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="pname">@</span>
+                              <input type="text" id="pname" name="pname" class="form-control" placeholder="Product name" 
+                                value="{{product.pname}} " aria-label="pname" aria-describedby="basic-addon1" required>
+                          </div>
+
+                          <label for="price" class="form-label">Edit Product Price :</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="price">@</span>
+                              <input type="text" id="price" name="price" class="form-control" placeholder="Product price"
+                             value="{{product.price}} "  aria-label="price" aria-describedby="basic-addon1" required>
+                          </div>
+
+                          <label for="image" class="form-label">Edit Product Image :</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="image">@</span>
+                              <input type="text" id="image" name="image" class="form-control" placeholder="Product image"
+                                 aria-label="image" aria-describedby="basic-addon1" required>
+                          </div>
+
+                          <label for="details" class="form-label">Edit Product Details :</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="details"></span>
+                              <input type="text" id="details" name="details" class="form-control" placeholder="Product details"
+                                 aria-label="details" aria-describedby="basic-addon1" required>
+                          </div>
+
+                          <label for="details" class="form-label">Edit Product Category :</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="details"></span>
+                              <input type="text" id="details" value="{{product.category}}" name="category" class="form-control" placeholder="Product details"
+                                 aria-label="details" aria-describedby="basic-addon1" required>
+                          </div>
+
+                         
+                          
+                          <div class="d-grid gap-2 col-5 mx-auto">
+                          <button class="btn btn-success bg-gradient" type="submit">Add The Product</button>
+                          </div>
+                          {% endfor %}
+                      </div>
+                  </div>
+
+              </div>
+
+   </form>
+
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    
+</script>
+{% endblock %}

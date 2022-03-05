@@ -1,0 +1,22 @@
+/products/edit/1
+
+ID -> 1
+
+/edit 
+
+select * from products where id=?
+
+details = fettchOne()
+
+edit -> detail
+
+input value {{detail.name}}
+
+submit -> post
+
+/edit 
+
+
+update set name=fname
+vasudanagaraj26@gmail.com
+JHAQPjum

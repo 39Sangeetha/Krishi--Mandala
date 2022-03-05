@@ -18,7 +18,7 @@
 </head>
 
 <body class="bg">
-	<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient">
 		<div class="container-fluid"> <a class="navbar-brand" href="#">ಕೃಷಿ ಮಂಡಲ</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
 			<div class="collapse navbar-collapse" id="navbarNav">
@@ -34,12 +34,16 @@
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg></a>
 						<li class="nav-item"> <a class="nav-link" href="#">About Us</a> </li>
-						<li class="nav-item"> <a class="nav-link" href="#">Contact Us</a> </li>
+						<li class="nav-item"> <a class="nav-link" href="/contactus">Contact Us</a> </li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<main class="container">
+		<a href="/register" class="btn btn-outline-dark my-2 bg-gradient"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+		  </svg> Back</a>
+		
 		<form class="my-3" method="POST" action="/farmerregister">
 			  
 			<div class="row">
@@ -70,9 +74,9 @@
 									<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Age</span>
 										<input type="age" id="age" class="form-control" placeholder="" name="Age" aria-label="Age" aria-describedby="basic-addon1" required> </div>
 									<label for="farmersname" class="form-label"></label>
-									<div class="input-group mb-1"> <span class="input-group-text" id="basic-addon1">Gender</span>
+									<div class="input-group mb-2"> <span class="input-group-text" id="basic-addon1">Gender</span>
 										
-											<div class="radio">
+											<div class="radio ">
 												<label>
 													<input type="radio" name="Gender" id="Radios1" value="Male"> Male </label>
 											</div>
@@ -84,6 +88,7 @@
 												<label>
 													<input type="radio" name="Gender" id="Radios3" value="Others"> Others </label>
 											</div>
+
 								</div>
 
 							<label for="age" class="form-label"></label>
@@ -137,30 +142,25 @@
 							<div class="accordion-item">
 								<h2 class="accordion-header" id="headingTwo">
 								  <button class="accordion-button  " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						           ID CREATION
+						           USERNAME CREATION
 								  </button>
 								</h2>
 								<div id="collapseTwo" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 								  <div class="accordion-body">
-									<h5 class="card-title text-center">Create Your Id</h5>
-							<label for="farmersname" class="form-label"></label>
+									<h5 class="card-title text-center">Create Your UserName</h5>
+							<label for="farmername" class="form-label"></label>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Farmer Id</span>
-                                <input type="text" id="Name" class="form-control" name="id" placeholder="Create Your Id"
-                                    aria-label="Name" aria-describedby="basic-addon1" required>
+                                <span class="input-group-text" id="basic-addon1">UserName</span>
+                                <input type="text" id="username" class="form-control" name="username" placeholder="Create Your UserName"
+                                    aria-label="username" aria-describedby="basic-addon1" required>
                             </div>
                             <label for="age" class="form-label"></label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Password</span>
-                                <input type="text" id="accno" class="form-control" placeholder="Create A Password"
-                                    aria-label="Account Number" aria-describedby="basic-addon1" required>
+                                <input type="password" id="password" class="form-control" name="password" placeholder="Create A Password"
+                                    aria-label="password" aria-describedby="basic-addon1" required>
                             </div>
-                           <label for="age" class="form-label"></label>
-                            <div class="input-group mb-2">
-                                    <span class="input-group-text" id="basic-addon1">Confirm Password</span>
-                                    <input type="text" id="bankname" class="form-control" placeholder="Re-enter Your Password"
-                                    aria-label="bankname" aria-describedby="basic-addon1" required>
-                            </div>
+        
                             </div>
                          </div>
                  </div>
@@ -183,7 +183,7 @@
 								<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 								  <div class="accordion-body">
 							<h5 class="card-title text-center">Register</h5>
-                            <p class="card-text text-center">Please Enter your bank details.</p><label for="farmersname" class="form-label"></label>
+                            <p class="card-text text-center">Please Enter your bank details.</p><label for="farmername" class="form-label"></label>
                         <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Name As Per Bank Account</span>
                                 <input type="text" id="Name" class="form-control" name="nameb" placeholder=""
@@ -192,7 +192,7 @@
                             <label for="accno" class="form-label"></label>
                         <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Account Number</span>
-                                <input type="number" id="accno" class="form-control" name="accno" placeholder=""
+                                <input type="text" id="accno" class="form-control" name="accno" placeholder=""
                                     aria-label="Account Number" aria-describedby="basic-addon1" required>
                         </div>
                           <label for="bankname" class="form-label"></label>
@@ -207,8 +207,8 @@
                                     <input type="text" id="ifsc" class="form-control" name="ifsccode" placeholder=""
                                         aria-label="IFSCCODE" aria-describedby="basic-addon1" required>
                             </div>
-                            <button class= "btn btn-success " type="submit">SUBMIT </button>
-                            <button class="btn btn-danger" type="reset">CLEAR</button>
+                            <button class= "btn btn-success bg-gradient" type="submit">REGISTER </button>
+                            <button class="btn btn-danger bg-gradient" type="reset">CLEAR</button>
 						</div>
 					</div>
 				  </div>

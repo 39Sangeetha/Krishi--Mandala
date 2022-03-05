@@ -1,0 +1,53 @@
+{% extends "/admin/base.html" %}
+{% block title %}Title{% endblock %}
+
+{% block content  %}
+    <!-- Added your content -->
+<div class="container">
+     <form class="my-3" method="POST" action="/admin/">
+
+          <div class="row">
+                <div class="col-md-4"></div>
+
+                <div class="col-md-4">
+
+                    <div class="card" >
+
+                        <div class="card-body bg-dark bg-gradient">
+                            <h5 class="card-title text-light text-center">Admin Login</h5>
+                            <p class="card-text text-light text-center">Please Enter your account details.</p>
+
+                            <label for="username" class=" text-light form-label">Enter Your Username:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="spusername"></span>
+                                <input type="text" id="username" name="username" class="form-control" placeholder="Username"
+                                    aria-label="Username" aria-describedby="basic-addon1" required>
+                            </div>
+
+                            <label for="password" class="text-light form-label">Enter Your Password:</label>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="sppassword"></span>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                                    aria-label="Password" aria-describedby="basic-addon1" required>
+                            </div>
+
+                            <h5 class="text-danger">{{msg}}</h5>
+                            <div class="d-grid gap-2 col-8 mx-auto">
+                                <button class="btn btn-primary bg-gradient" type="submit">Login</button>
+                           
+
+                        </div>
+                    </div>
+
+                </div>
+
+     </form>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    
+</script>
+{% endblock %}

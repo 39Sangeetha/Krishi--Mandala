@@ -1,0 +1,69 @@
+{% extends "/admin/base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content  %}
+<div class="container">
+    <!-- Added your content -->
+    <h5 class="text-center">Blog Edit</h5>
+
+    <form class="my-3" method="POST" action="/upload">
+
+        <div class="row">
+              <div class="col-md-3"></div>
+
+              <div class="col-md-6">
+
+                  <div class="card" >
+                    
+                      <div class="card-body bg-primary bg-opacity-50 bg-gradient">
+                          <h5 class="card-title text-center"></h5>
+                          <p class="card-text text-center"></p>
+                            {% for blog in blogs %}
+                          <label for="pname" class="form-label">Edit Your Name :</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="name">@</span>
+                              <input type="text" id="name" name="name" class="form-control" placeholder="Name" 
+                                value="{{blog.name}} " aria-label="name" aria-describedby="basic-addon1" required>
+                          </div>
+
+                          <label for="title" class="form-label">Edit Title:</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="title">@</span>
+                              <input type="text" id="title" name="title" class="form-control" placeholder="Blog title"
+                             value="{{blog.title}} "  aria-label="title" aria-describedby="basic-addon1" required>
+                          </div>
+
+                          <label for="title" class="form-label">Edit Blog here</label>
+                          <div class="form-floating ">
+                            
+                            <textarea class="form-control"  placeholder="Blog here" name="content"  id="floatingTextarea2"   rows="20" cols="100">{{blog.content}}</textarea>
+                            <label for="floatingTextarea2" ></label>
+                          </div>
+
+                          <label for="image" class="form-label">Edit Image :</label>
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="image">@</span>
+                              <input type="text" id="image" name="image" class="form-control" placeholder="image"
+                             value="{{blog.image}}" aria-label="image" aria-describedby="basic-addon1" required>
+                          </div>
+                          
+                          <h5 class="text-danger">{{msg}}</h5>
+                          <div class="d-grid gap-2 col-5 mx-auto">
+                          <button class="btn btn-success bg-gradient" type="submit">SUBMIT</button>
+                          </div>
+                          {% endfor %}
+                      </div>
+                  </div>
+
+              </div>
+
+   </form>
+
+   {% endblock %}
+
+   {% block javascript %}
+   <script type="text/javascript">
+       
+   </script>
+   {% endblock %}
+
