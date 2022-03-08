@@ -24,35 +24,46 @@
           object-fit: cover;
         }
       </style>
-    <title>Krishi Mandala Web Portal    {% block title %}{% endblock %}</title>
+    <title>Krishi Mandala Web Portal{% block title %}{% endblock %}</title>
 </head>
 <body class="bg">
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-primary bg-gradient  " >
     <div class="container-fluid ">
-        <h2 class="navbar-brand" href="/admin/dashboard"> ಕೃಷಿ ಮಂಡಲ</h2>   
+        <a class="navbar-brand" href="/admin/dashboard"> ಕೃಷಿ ಮಂಡಲ</a>   
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav offset-3">
+            <ul class="navbar-nav offset-0">
                 
                 {% if request.session.get('isLogin') %}
                 <li class="nav-item">
                     <a class="nav-link "  href="/admin/dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/products">Products</a>
+                    <a class="nav-link" href="/admin/products">Products </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/products_create">Add Product</a>
+                    <a class="nav-link" href="/admin/products_create">Add Product <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"/>
+                      </svg></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/orders">Orders</a>
+                    <a class="nav-link" href="/admin/orders">Orders <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                      </svg></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/verify">Verify</a>
+                    <a class="nav-link" href="/admin/verify">Verify Product <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-check-fill" viewBox="0 0 16 16">
+                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1.146 6.854-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                      </svg></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/verify_blog">Verify Blog <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check-fill" viewBox="0 0 16 16">
+                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm1.354 4.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                      </svg></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/sendmessage">Telegram Message</a>
@@ -83,7 +94,46 @@
                     <a class="nav-link active "  href="#">                              </a>
                 </li><li class="nav-item">
                     <a class="nav-link active "  href="#">                              </a>
-                </li><li class="nav-item">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li></li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li></li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li></li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li></li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li></li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li></li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li></li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li></li>                <li class="nav-item">
+                    <a class="nav-link active "  href="#">                              </a>
+                </li></li>                <li class="nav-item">
                     <a class="nav-link active "  href="#">                              </a>
                 </li>
                                <li class="nav-item">

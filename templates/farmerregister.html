@@ -19,26 +19,60 @@
 
 <body class="bg">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient">
-		<div class="container-fluid"> <a class="navbar-brand" href="#">ಕೃಷಿ ಮಂಡಲ</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item"> <a class="nav-link " href="/">Home</a> </li>
-					<li class="nav-item"> <a class="nav-link" href="/Products">Shop</a> </li>
-					<li class="nav-item ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ಕೃಷಿ ಮಂಡಲ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link "  href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Products">Shop</a>
+                    </li>
+                    {% if request.session.get('isLogin') %}
+                    <li class="nav-item ">
                         <a class="nav-link" href="/newsfeed">News Feed</a>
                        </li>
-					<li class="nav-item"> <a class="nav-link" href="/login">Login</a> </li>
-					<li class="nav-item"> <a class="nav-link active" aria-current="page" href="/register">Register <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                       <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                          </svg>{{request.session.get('username')}}!
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <li><a class="dropdown-item" href="/logout">Logout <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                            <path d="M7.5 1v7h1V1h-1z"/>
+                            <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+                          </svg></a></li>
+                        </ul>
+                  </li>
+                  {% else %}
+                       <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Register <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg></a>
-						<li class="nav-item"> <a class="nav-link" href="#">About Us</a> </li>
-						<li class="nav-item"> <a class="nav-link" href="/contactus">Contact Us</a> </li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+                    </li>
+                   {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contactus">Contact Us</a>
+                    </li>
+          
+                </ul>
+            </div>
+        </div>
+    </nav>
 	<main class="container">
 		<a href="/register" class="btn btn-outline-dark my-2 bg-gradient"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
 			<path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
@@ -47,9 +81,9 @@
 		<form class="my-3" method="POST" action="/farmerregister">
 			  
 			<div class="row">
-				<div class="col-md-2"></div>
+				<div class="col-md-1"></div>
 				
-				<div class="col-md-8">
+				<div class="col-md-10">
 					<div class="card">
 						<div class="card-body">
 							<div class="card text-center">
@@ -103,31 +137,30 @@
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">State</span>
 								<input type="text-area" id="State"  name="State" class="form-control" placeholder="" aria-label="State" aria-describedby="basic-addon1" required> </div>
 							
-						     <div class="col-md-3">
-							  <div class="form-check">
-								<input class="form-check-input" type="checkbox" name="FarmCategory" value="Small Scale Farming" id="flexCheckDefault">
-								<label class="form-check-label" for="flexCheckDefault">Small Scale Farming </label>
-							  </div>
-							  <div class="form-check">
-								<input class="form-check-input" type="checkbox" name="FarmCategory" value="Marginal Farming" id="flexCheckChecked">
-								<label class="form-check-label" for="flexCheckChecked">Marginal Farming </label>
-							  </div>
-							  							  
-							  <div class="form-check">
-								<input class="form-check-input" type="checkbox" name="FarmCategory" value="Large Scale Farming" id="flexCheckDefault">
-								<label class="form-check-label" for="flexCheckDefault">Large Scale Farming </label>
-							  </div>
-							  <div class="form-check">
-								<input class="form-check-input" type="checkbox" name="FarmCategory" value="House Farming" id="flexCheckChecked">
-								<label class="form-check-label" for="flexCheckChecked">House Farming </label>
-							  </div>
-							</div>
+								<label for="username" class="form-label text-light"></label>
+
+								
+											
+								  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+									<div class="input-group"> <span class="input-group-text" id="basic-addon1">Select Farm Category</span>
+									<input type="radio" class="btn-check" name="FarmCategory" name="btnradio" id="btnradio1" autocomplete="off" value="Marginal Farming" >
+									<label class="btn btn-outline-primary bg-gradient " for="btnradio1">Marginal Farming</label>
+								  
+									<input type="radio" class="btn-check" name="FarmCategory" name="btnradio" id="btnradio2" autocomplete="off" value="House Farming">
+									<label class="btn btn-outline-primary bg-gradient" for="btnradio2">House Farming</label>
+								  
+									<input type="radio" class="btn-check" name="FarmCategory" name="btnradio" id="btnradio3" autocomplete="off" value="Small Scale Farming">
+									<label class="btn btn-outline-primary bg-gradient " for="btnradio3">Small Scale Farming</label>
+									<input type="radio" class="btn-check" name="FarmCategory" name="btnradio" id="btnradio4" autocomplete="off" value="Large Scale Farming">
+									<label class="btn btn-outline-primary bg-gradient " for="btnradio4">Large Scale Farming</label>
+					
+								  </div>
+								  </div>
 						</div>
 					</div>	
 				</div>
 			</div>  
-			</div>
-				
+			
 				           
 				<div class="row">
                 <div class="col-md-0"></div>
@@ -141,7 +174,7 @@
                         <div class="card-body">
 							<div class="accordion-item">
 								<h2 class="accordion-header" id="headingTwo">
-								  <button class="accordion-button  " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								  <button class="accordion-button  " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 						           USERNAME CREATION
 								  </button>
 								</h2>
@@ -158,8 +191,9 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Password</span>
                                 <input type="password" id="password" class="form-control" name="password" placeholder="Create A Password"
-                                    aria-label="password" aria-describedby="basic-addon1" required>
+                                    aria-label="password" minlength="7"  pattern="(?=.*\d ) (?=.*[a-z]) (?=.*[A-Z]).{7,}"  aria-describedby="basic-addon1" required>
                             </div>
+							<p class="text-danger">*ನಿಮ್ಮ ಪಾಸ್ ವರ್ಡ್ ಅಪ್ಪರ್ ಕೇಸ್, ಲೋವರ್ ಕೇಸ್ ಮತ್ತು ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿರಬೇಕು*</p>
         
                             </div>
                          </div>
@@ -167,7 +201,7 @@
             </div>
 		</div>
 	</div>
-  </div>
+
 
 			<div class="row">
                 <div class="col-md-0"></div>
@@ -176,7 +210,7 @@
                         <div class="card-body">
 							<div class="accordion-item">
 								<h2 class="accordion-header" id="headingThree">
-								  <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								  <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
 								  BANK DETAILS
 								  </button>
 								</h2>
@@ -213,19 +247,17 @@
 					</div>
 				  </div>
 				</div>
-            </div>
-		</div>
-	</div>
+            
   </form>
 </main>
 	<!-- Optional JavaScript; choose one of the two! -->
 	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<!-- Option 2: Separate Popper and Bootstrap JS -->
-	<!--
+	
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
+
 </body>
 
 </html>

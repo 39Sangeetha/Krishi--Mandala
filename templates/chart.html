@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+
+      .bg {
+        background: url("   ");
+      }
+    </style>
+    <title>Krishi Mandala Web Portal</title>
+  </head>
+  <body class="bg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient  ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"> ಕೃಷಿ ಮಂಡಲ </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav device-width">
+            <li class="nav-item">
+              <a class="nav-link "  href="/"
+                >Home
+                </a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="/Products">Shop</a>
+            </li>
+            {% if request.session.get('isLogin') %}
+            <li class="nav-item">
+              <a class="nav-link" href="/newsfeed">News Feed</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Product stats</a>
+              </li>
+             <li class="nav-item">
+              <a class="nav-link" href="/orders">Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cart">Cart</a>
+        </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+              </svg>  Hey, {{request.session.get('username')}}!</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                <path d="M7.5 1v7h1V1h-1z"/>
+                <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+              </svg></a>
+          </li>
+            
+            {% else %}
+
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+            </li>
+            {% endif %}
+            <li>
+              <a class="nav-link" href="/aboutus">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contactus">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<div class="container">
+    <!-- Added your content -->
+    <h5 class="text-center">PRODUCT STATS</h5>
+    <div class="row my-5">
+    <h4 class="text-center">Price Of Products</h4s>
+    <canvas id="bar_chart" width="800" height="250"></canvas>
+    </div>
+    
+    
+    <div class="row my-5">
+        <h3 class="text-center">CROPS</h3>
+        <h4 class="text-center">Ragi</h4>
+        <div class="col-md-3"></div>
+        <canvas id="ragi_chart" width="500" height="200"></canvas>
+        </div>
+        <div class="row my-5">
+            <h4 class="text-center">Rice</h4>
+            <div class="col-md-3"></div>
+            <canvas id="rice_chart" width="500" height="200"></canvas>
+            </div>
+        <div class="row my-5">
+            <h3 class="text-center">FRUITS</h3>
+             <h4 class="text-center">Banana</h4>
+            <div class="col-md-3"></div>
+            <canvas id="banana_chart" width="500" height="200"></canvas>
+        </div>
+        <h4 class="text-center">Guava</h4>
+        <div class="col-md-3"></div>
+        <canvas id="Guava_chart" width="500" height="200"></canvas>
+        <div class="row my-5">
+        <h3 class="text-center">VEGETABLES</h3>
+         <h4 class="text-center">Tomato</h4>
+        <div class="col-md-3"></div>
+        <canvas id="tomato_chart" width="500" height="200"></canvas>
+         <h4 class="text-center">Onion</h4>
+         <div class="col-md-3"></div>
+         <canvas id="onion_chart" width="500" height="200"></canvas>
+        </div>
+     </div>
+</div>
+<script>
+    var chartFarmerTypes,chartFarmerCount;
+    var chartProductName,chartProductPrice,chartProductTypes,chartProductCounts;
+    const productNames = (data) =>  data.map(pname => pname.pname);
+    const productPrices = (data) =>  data.map(pname => pname.price);
+
+    const productTypes = (data) =>  data.map(pname => pname.category);
+    const productCounts = (data) =>  data.map(pname => pname.count);
+
+    const farmerTypes = (data) => data.map(type => type.type);
+    const farmerCounts = (data) => data.map(type => type.count); 
+
+
+    fetch("http://127.0.0.1:8000/products_data").then(res => res.json()).then(data => data)
+    .then(pnames =>{
+        chartProductName = productNames(pnames);
+        chartProductPrice = productPrices(pnames);
+        
+        var ctx = document.getElementById('bar_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+            
+            data: { 
+                labels: chartProductName,
+                
+               
+                datasets: [{
+                    label: 'Product Price History',
+                    data: chartProductPrice,
+                    
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });    
+    });
+    
+    
+    var chartProductMonth,chartProductPrice;
+    const productMonths = (data) =>  data.map(month => month.month);
+    const productPricess = (data) =>  data.map(month => month.price);
+
+    fetch("http://127.0.0.1:8000/ragi_chart").then(res => res.json()).then(data => data)
+    .then(months =>{
+        chartProductMonth = productMonths(months);
+        chartProductPrice = productPricess(months);
+        
+        var ctx = document.getElementById('ragi_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+            
+            data: { 
+                labels: chartProductMonth,
+                
+               
+                datasets: [{
+                    label: 'Product Price ',
+                    data: chartProductPrice,
+                    
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });    
+    });
+    
+    fetch("http://127.0.0.1:8000/rice_chart").then(res => res.json()).then(data => data)
+    .then(months =>{
+        chartProductMonth = productMonths(months);
+        chartProductPrice = productPricess(months);
+        
+        var ctx = document.getElementById('rice_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+            
+            data: { 
+                labels: chartProductMonth,
+                
+               
+                datasets: [{
+                    label: 'Product Price',
+                    data: chartProductPrice,
+                    
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });    
+    });   
+
+    
+    fetch("http://127.0.0.1:8000/banana_chart").then(res => res.json()).then(data => data)
+    .then(months =>{
+        chartProductMonth = productMonths(months);
+        chartProductPrice = productPricess(months);
+        
+        var ctx = document.getElementById('banana_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+            
+            data: { 
+                labels: chartProductMonth,
+                
+               
+                datasets: [{
+                    label: 'Product Price',
+                    data: chartProductPrice,
+                    
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });    
+    });   
+
+    fetch("http://127.0.0.1:8000/products_charts").then(res => res.json()).then(data => data)
+    .then(months =>{
+        chartProductMonth = productMonths(months);
+        chartProductPrice = productPricess(months);
+        
+        var ctx = document.getElementById('bar_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+            
+            data: { 
+                labels: chartProductMonth,
+                
+               
+                datasets: [{
+                    label: 'Product Price History',
+                    data: chartProductPrice,
+                    
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });    
+    }); 
+
+    fetch("http://127.0.0.1:8000/Guava_chart").then(res => res.json()).then(data => data)
+    .then(months =>{
+        chartProductMonth = productMonths(months);
+        chartProductPrice = productPricess(months);
+        
+        var ctx = document.getElementById('Guava_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+            
+            data: { 
+                labels: chartProductMonth,
+                
+               
+                datasets: [{
+                    label: 'Product Price History',
+                    data: chartProductPrice,
+                    
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });    
+    });     
+
+
+    fetch("http://127.0.0.1:8000/tomato_chart").then(res => res.json()).then(data => data)
+    .then(months =>{
+        chartProductMonth = productMonths(months);
+        chartProductPrice = productPricess(months);
+        
+        var ctx = document.getElementById('tomato_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+            
+            data: { 
+                labels: chartProductMonth,
+                
+               
+                datasets: [{
+                    label: 'Product Price History',
+                    data: chartProductPrice,
+                    
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });    
+    });     
+    
+
+
+    fetch("http://127.0.0.1:8000/onion_chart").then(res => res.json()).then(data => data)
+    .then(months =>{
+        chartProductMonth = productMonths(months);
+        chartProductPrice = productPricess(months);
+        
+        var ctx = document.getElementById('onion_chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+            
+            data: { 
+                labels: chartProductMonth,
+                
+               
+                datasets: [{
+                    label: 'Product Price History',
+                    data: chartProductPrice,
+                    
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });    
+    });   
+</script>
+
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+  
+   
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+  </body>
+</html>

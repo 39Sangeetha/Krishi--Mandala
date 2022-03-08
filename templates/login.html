@@ -63,7 +63,7 @@
                    
                         {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="/aboutus">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contactus">Contact Us</a>
@@ -87,7 +87,7 @@
 
                 <div class="col-md-5">
 
-                    <div class="card mx-3" >
+                    <div class="card mx-4" >
                         
 
                         <div class="card-body  bg-gradient ">
@@ -96,7 +96,7 @@
 
                             <label for="username" class="form-label">Enter Your Username:</label>
                             <div class="input-group mb-3">
-                                <span class="input-group-text " id="basic-addon1"></span>
+                                <span class="input-group-text " id="basic-addon1">@</span>
                                 <input type="text" id="farmername" class="form-control" name="username" placeholder="Username"
                                     aria-label="username" aria-describedby="basic-addon1" required>
                             </div>
@@ -104,10 +104,11 @@
                             <label for="password" class="form-label">Enter Your Password:</label>
 
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"></span>
+                                <span class="input-group-text" id="basic-addon1">@</span>
                                 <input type="password" id="password" class="form-control" name="password" placeholder="Password"
-                                    aria-label="password" aria-describedby="basic-addon1" required>
+                                    aria-label="password" minlength="7" maxlength="16" aria-describedby="basic-addon1" required>
                             </div>
+
 
                             <h5 class="text-danger text-center">{{msg}}</h5>
                             <div class="d-grid gap-2 col-8 mx-auto">

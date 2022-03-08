@@ -19,7 +19,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">ಕೃಷಿ ಮಂಡಲ</a>
+          <a class="navbar-brand" href="/logout/aboutus">ಕೃಷಿ ಮಂಡಲ</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -47,32 +47,31 @@
     
                       <div class="card" >
                         
-                          <div class="card-body bg-primary bg-opacity-50 bg-gradient">
+                          <div class="card-body bg-opacity-15 bg-primary bg-gradient">
                               <h5 class="card-title text-center"></h5>
                               <p class="card-text text-center"></p>
                                 {% for blog in blogs %}
-                              <label for="pname" class="form-label">Edit Your Name :</label>
+                              <label for="pname" class="form-label text-light">Edit Your Name :</label>
                               <div class="input-group mb-3">
                                   <span class="input-group-text" id="name">@</span>
                                   <input type="text" id="name" name="name" class="form-control" placeholder="Name" 
                                     value="{{blog.name}} " aria-label="name" aria-describedby="basic-addon1" required>
                               </div>
     
-                              <label for="title" class="form-label">Edit Title:</label>
+                              <label for="title" class="form-label text-light">Edit Title:</label>
                               <div class="input-group mb-3">
                                   <span class="input-group-text" id="title">@</span>
                                   <input type="text" id="title" name="title" class="form-control" placeholder="Blog title"
                                  value="{{blog.title}} "  aria-label="title" aria-describedby="basic-addon1" required>
                               </div>
     
-                              <label for="title" class="form-label">Edit Blog here</label>
+                              <label for="title" class="form-label text-light">Edit Blog here</label>
                               <div class="form-floating ">
-                                
-                                <textarea class="form-control"  placeholder="Blog here" name="content"   id="floatingTextarea2"  rows="100" cols="100">{{blog.content}}</textarea>
+                                <textarea class="form-control"  placeholder="Blog here" name="content"   id="floatingTextarea2" style="height: 234px;" rows="100" cols="100">{{blog.content}}</textarea>
                                 <label for="floatingTextarea2" ></label>
                               </div>
     
-                              <label for="image" class="form-label">Edit Image :</label>
+                              <label for="image" class="form-label text-light">Edit Image :</label>
                               <div class="input-group mb-3">
                                   <span class="input-group-text" id="image">@</span>
                                   <input type="text" id="image" name="image" class="form-control" placeholder="image"

@@ -33,6 +33,15 @@ def index(request : Request):
 def Products(request : Request):
     return templates.TemplateResponse("Products.html",{"request" : request})
 
+@app.get("/aboutus", response_class=HTMLResponse)
+def Products(request : Request):
+    return templates.TemplateResponse("aboutus.html",{"request" : request})
+
+@app.get("/logout/aboutus", response_class=HTMLResponse)
+def logout(request: Request):
+    request.session.clear()
+    return RedirectResponse("/aboutus", status_code=status.HTTP_302_FOUND)    
+
 @app.get("/admin/sendmessage", response_class=HTMLResponse)
 def Products(request : Request):
     return templates.TemplateResponse("/admin/send.html",{"request" : request})
@@ -52,15 +61,9 @@ def newsfeed(request : Request):
     con.close
     return templates.TemplateResponse("newsfeed.html",{"request" : request,"blogs" : blogs })
 
-@app.get("/blogs", response_class=HTMLResponse)
-def blogs(request : Request):
-    con = sqlite3.connect("Myapp.db")
-    con.row_factory = sqlite3.Row
-    cur = con.cursor()
-    cur.execute("select * from blog")
-    blogs = cur.fetchall()
-    con.close
-    return templates.TemplateResponse("blogs.html",{"request" : request})
+@app.get("/chart", response_class=HTMLResponse)
+def chart(request : Request):
+    return templates.TemplateResponse("chart.html",{"request" : request})
 
 @app.get("/upload", response_class=HTMLResponse)
 def upload(request : Request):
@@ -80,10 +83,18 @@ def upload_home(request : Request):
 def addblog(request : Request, name : str =  Form(...), title : str = Form(...), content : str = Form(...), image :str =Form(...)):
     with sqlite3.connect("Myapp.db") as con:
         cur = con.cursor()
+        cur.execute("INSERT into verify_blog(name,title,content,image) values(?,?,?,?)",(name,title,content,image))
+        con.commit()
+    return RedirectResponse("/upload_home",status_code=status.HTTP_302_FOUND)
+
+@app.post("/admin/upload",response_class=HTMLResponse)
+def addblog(request : Request, name : str =  Form(...), title : str = Form(...), content : str = Form(...), image :str =Form(...)):
+    with sqlite3.connect("Myapp.db") as con:
+        cur = con.cursor()
         cur.execute("INSERT into blog(name,title,content,image) values(?,?,?,?)",(name,title,content,image))
         con.commit()
         telegram.sendmessage(content)
-    return RedirectResponse("/upload_home",status_code=status.HTTP_302_FOUND)
+    return RedirectResponse("/admin/dashboard",status_code=status.HTTP_302_FOUND)
 
 @app.get("/login", response_class=HTMLResponse)
 def login(request : Request):
@@ -300,11 +311,11 @@ def cart(request: Request):
     return templates.TemplateResponse("/cart.html", {"request": request, "items": items})
 
 @app.get("/admin/products_edit/{pid}", response_class=HTMLResponse)
-def admin_product_edit(request: Request, pname : str = Form(...), price : str = Form(...),image : str = Form(...),details : str = Form(...), category : str = Form(...),pid: int = 0):
+def admin_product_edit(request: Request,pid: int = 0):
      con = sqlite3.connect("Myapp.db")
      con.row_factory = sqlite3.Row
      cur = con.cursor()
-     cur.execute("UPDATE products SET pname=? price=? image=? details=? category=? where id=?" , (pname,price,image,details,category,pid))
+     cur.execute("select * from products  where id=?" , [pid])
      products = cur.fetchall()
      con.close
      return templates.TemplateResponse("/admin/products_edit.html", {"request": request , "products":products , "pid" : pid} )
@@ -319,16 +330,25 @@ def admin_product_edit(request: Request, pid: int = 0):
      con.close
      return templates.TemplateResponse("/admin/verify_edit.html", {"request": request , "products":products , "pid" : pid} )
 
+@app.get("/admin/blog_edit/{bid}", response_class=HTMLResponse)
+def admin_blog_edit(request: Request, bid: int = 0):
+     con = sqlite3.connect("Myapp.db")
+     con.row_factory = sqlite3.Row
+     cur = con.cursor()
+     cur.execute("select * from verify_blog where id=?" , [bid])
+     bloggs = cur.fetchall()
+     con.close
+     return templates.TemplateResponse("/admin/blog_edit.html", {"request": request , "bloggs":bloggs , "bid" : bid} )
 
 @app.get("/blog_edit/{bid}", response_class=HTMLResponse)
-def blog_edit(request: Request, bid: int = 0):
+def admin_blog_edit(request: Request, bid: int = 0):
      con = sqlite3.connect("Myapp.db")
      con.row_factory = sqlite3.Row
      cur = con.cursor()
      cur.execute("select * from blog where id=?" , [bid])
      blogs = cur.fetchall()
      con.close
-     return templates.TemplateResponse("blog_edit.html", {"request": request , "blogs":blogs , "bid" : bid} )
+     return templates.TemplateResponse("blog_edit.html", {"request": request , "blogs": blogs , "bid" : bid} )
 
 @app.get("/delete/{bid}", response_class=HTMLResponse)
 def blog_edit(request: Request, bid: int = 0):
@@ -382,6 +402,17 @@ def admin_products(request: Request):
     con.close
     return templates.TemplateResponse("/admin/verify.html", {"request": request, "products": products})
 
+@app.get("/admin/verify_blog", response_class=HTMLResponse)
+def admin_products(request: Request):
+    con = sqlite3.connect("Myapp.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from  verify_blog")
+    bloggs = cur.fetchall()
+    con.close
+    return templates.TemplateResponse("/admin/verify_blog.html", {"request": request, "bloggs": bloggs})
+
+
 @app.get("/logout", response_class=HTMLResponse)
 def logout(request: Request):
     request.session.clear()
@@ -417,7 +448,7 @@ def orders(request : Request):
     con = sqlite3.connect("Myapp.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
-    cur.execute("SELECT *,o.id as oid from farmer u,orders o, products p where u.id=o.uid and o.pid=p.id and o.uid =?",[uid])
+    cur.execute("SELECT *,o.id as oid from farmer u,orders o, products p where  u.id=o.uid and o.pid=p.id and o.uid =?",[uid])
     orders = cur.fetchall()
     con.close
     return templates.TemplateResponse("/orders.html", {"request": request, "orders": orders})
@@ -507,6 +538,66 @@ def farmer_data(request: Request):
     con.row_factory = sqlite3.Row
     cur = con.cursor()
     cur.execute("select type,count(*) as count from farmer GROUP by type")
+    items = cur.fetchall()
+    con.close
+    return items
+
+@app.get("/ragi_chart")
+def products_chart(request: Request):
+    con = sqlite3.connect("Myapp.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from chart where pname= 'Ragi'")
+    items = cur.fetchall()
+    con.close
+    return items
+
+@app.get("/rice_chart")
+def products_chart(request: Request):
+    con = sqlite3.connect("Myapp.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from chart where pname= 'Rice'")
+    items = cur.fetchall()
+    con.close
+    return items
+
+@app.get("/banana_chart")
+def products_chart(request: Request):
+    con = sqlite3.connect("Myapp.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from chart where pname= 'Banana'")
+    items = cur.fetchall()
+    con.close
+    return items
+
+@app.get("/Guava_chart")
+def products_chart(request: Request):
+    con = sqlite3.connect("Myapp.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from chart where pname= 'Guava'")
+    items = cur.fetchall()
+    con.close
+    return items
+
+@app.get("/tomato_chart")
+def products_chart(request: Request):
+    con = sqlite3.connect("Myapp.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from chart where pname= 'Tomato'")
+    items = cur.fetchall()
+    con.close
+    return items
+
+@app.get("/onion_chart")
+def products_chart(request: Request):
+    con = sqlite3.connect("Myapp.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from chart where pname= 'Onion'")
     items = cur.fetchall()
     con.close
     return items

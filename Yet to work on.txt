@@ -1,8 +1,0 @@
-Navbar design in register(login session visiblity)
-navbar design in newsfeed and shop 
-checking if condition for home our serices(shopping)page if login thn redirect to shop if else redirect login
-newsfeed tabs
-blogger and user login,form validation in html 
-
-API Key Telegram
-5235854735:AAFPlFyow2J-nL1n03-EeY-mQYer56cQ10A

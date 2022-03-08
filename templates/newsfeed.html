@@ -235,7 +235,7 @@ a.article:hover {
                             {% endif %}
                             
                             <li class="nav-item">
-                              <a class="nav-link" href="#">About Us</a>
+                              <a class="nav-link" href="/aboutus">About Us</a>
                             </li>
                             <li class="nav-item">
                               <a class="nav-link" href="/contactus">Contact Us</a>
@@ -271,7 +271,7 @@ a.article:hover {
                             
                         </li>
                         <li>
-                            <a href="#">Schemes</a>
+                            <a href="#schemes">Schemes</a>
                         </li>
                     
                           
@@ -347,22 +347,19 @@ a.article:hover {
         </div>
 </section>
 
-<section id="schemes">   
+<section id="schemes">  
+    <h2 class="text-center">SCHEMES</h2> 
     <div class="schemes container">
-      <div class="row">
-            <div class="col-md-18 my-2">
-                <div class="card ">
-                    <a href="#" ></a>
-    
-                    <div class="mx-2">
-                    
-                    <h3 class="text-center"></h3>
-                    <p class="text-dark"></p>
-                   </div>
-                </div>
+        
+            
+            {% for blog in blogs %}
+            <div class="row"></div>
+            <h4  class=" text-dark"><a   href="{{blog.schemes}}"> {{ blog.schemename }}</a></h4>
+            <p class="text-light "><a href="{{blog.schemes}}">{{blog.schemesdetails}}</a></p>
+            {% endfor %}
             </div>
-       </div>
-    </div>
+        </div>
+      
 </section>
 
 

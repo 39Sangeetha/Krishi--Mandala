@@ -1,22 +1,48 @@
-<table class="table table-striped table-bordered my-3">
+{% extends "/admin/base.html" %}
+{% block title %}Products{% endblock %}
+
+{% block content  %}
+<div class="container">
+    <!-- Added your content -->
+    <h5 class="text-center">BLOGS</h5>
+
+<table class="table table-striped   table-primary table-bordered my-3">
     <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col" class="text-light">Name</th>
-          <th scope="col" class="text-light">Title</th>
+          <th scope="col" class="text-dark">Name</th>
+          <th scope="col" class="text-dark">Title</th>
+          <th scope="col" class="text-dark">Content</th>
+          <th scope="col" class="text-dark">Image</th>
+          <th scope="col" class="text-dark">Edit The Blog</th>
+          <th scope="col" class="text-dark">Delete The Blog</th>
+
+
+
         </tr>
       </thead>
       <tbody>
-        {% for blog in blogs %}
+        {% for blogg in bloggs %}
         <tr>
-            <th scope="row">{{ blog.id }}</th>
-            <td class="text-dark">{{blog.name}}</td>
-            <td class="text-light">{{blog.title}}</td>
-            <td ><a href="/blog_edit/{{blog.id}}" class="btn btn-info bg-gradient">EDIT</a></td>
-            <td><a href="/delete/{{blog.id}}" class="btn btn-danger bg-gradient">DELETE</a></td>
-
+            <th scope="row">{{ blogg.id }}</th>
+            <td class="text-dark">{{blogg.name}}</td>
+            <td class="text-dark">{{blogg.title}}</td>
+            <td class="text-dark">{{blogg.content}}</td>
+            <td><img src="{{blogg.image}}" height="234" width="234"> </td>
+            <div class="d-grid gap-2 col-8 mx-auto">
+            <td ><a href="/admin/blog_edit/{{blogg.id}}" class="btn btn-info bg-gradient">EDIT</a></td>
+            <td><a href="/delete/{{blogg.id}}" class="btn btn-danger bg-gradient">DELETE</a></td>
+            </div>
             
         </tr>
         {% endfor %}
         </tbody>
 </table>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    
+</script>
+{% endblock %}
