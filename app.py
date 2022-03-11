@@ -465,7 +465,7 @@ def farmerregister(request : Request):
     cur.execute("select * from farmer")
     items = cur.fetchall()
     con.close
-    return templates.TemplateResponse("farmerregister.html",{"request" : request, "items" : items})
+    return templates.TemplateResponse("fregister.html",{"request" : request, "items" : items})
 
 @app.post("/farmerregister",response_class=HTMLResponse)
 def addfarmer(request : Request, Name : str =  Form(...), Age : int = Form(...), Gender : str = Form(...), PhoneNumber : str = Form(...), AadharNumber:str =Form(...), Address : str = Form(...), District:str = Form(...),State : str = Form(...),FarmCategory : str = Form(...),nameb : str = Form(...), accno : int = Form(...), bankName : str = Form(...),ifsccode : str = Form(...) ,username  : str = Form(...), password  : str = Form(...) ):
