@@ -127,7 +127,7 @@
 
 							<label for="age" class="form-label"></label>
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Phone Number</span>
-								<input type="text" id="Phone Number" name="PhoneNumber" class="form-control" placeholder="" aria-label="phonenum" aria-describedby="basic-addon1" required> </div>
+								<input type="text" size="10" id="Phone Number" name="PhoneNumber" class="form-control" placeholder="" aria-label="phonenum" aria-describedby="basic-addon1" required> </div>
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Aadhar Number</span>
 								<input type="text" id="Aadhar Number" name="AadharNumber" class="form-control" placeholder="" aria-label="aadharnum" aria-describedby="basic-addon1" required> </div>
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Address</span>
@@ -184,14 +184,14 @@
 							<label for="farmername" class="form-label"></label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">UserName</span>
-                                <input type="text" id="username" class="form-control" name="username" placeholder="Create Your UserName"
+                                <input type="text" id="username" minlength="5" maxlength="16" class="form-control" name="username" placeholder="Create Your UserName"
                                     aria-label="username" aria-describedby="basic-addon1" required>
                             </div>
                             <label for="age" class="form-label"></label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Password</span>
                                 <input type="password" id="password" class="form-control" name="password" placeholder="Create A Password"
-                                    aria-label="password" minlength="7"  pattern="(?=.*\d ) (?=.*[a-z]) (?=.*[A-Z]).{7,}"  aria-describedby="basic-addon1" required>
+                                    aria-label="password" minlength="7"  maxlength="16"  aria-describedby="basic-addon1" required>
                             </div>
 							<p class="text-danger">*ನಿಮ್ಮ ಪಾಸ್ ವರ್ಡ್ ಅಪ್ಪರ್ ಕೇಸ್, ಲೋವರ್ ಕೇಸ್ ಮತ್ತು ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿರಬೇಕು*</p>
         

@@ -31,6 +31,9 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="/newsfeed">News Feed</a>
                        </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="/chart">Product stats</a>
+                      </li>
                        <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -87,7 +90,7 @@
 
 							<label for="PhoneNumber" class="form-label"></label>
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Phone Number</span>
-								<input type="text" id="Phone Number" name="PhoneNumber" class="form-control" placeholder="" aria-label="phonenum" aria-describedby="basic-addon1" required> </div>
+								<input type="text" id="Phone Number" size="10" name="PhoneNumber" class="form-control" placeholder="" aria-label="phonenum" aria-describedby="basic-addon1" required> </div>
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">Address</span>
 								<input type="text-area" id="Address" name="Address" class="form-control" placeholder="" aria-label="Address" aria-describedby="basic-addon1" required> </div>
 							<div class="input-group mb-3"> <span class="input-group-text" id="basic-addon1">District</span>
@@ -119,7 +122,7 @@
                                                             <label for="id" class="form-label"></label>
                                                             <div class="input-group mb-3">
                                                                 <span class="input-group-text" id="basic-addon1">UserName</span>
-                                                                <input type="text" id="id"  name="username" class="form-control" placeholder="Create Your UserName"
+                                                                <input type="text" id="id"  minlength="5" maxlength="16" name="username" class="form-control" placeholder="Create Your UserName"
                                                                     aria-label="Name" aria-describedby="basic-addon1" required>
                                                             </div>
                                                             
